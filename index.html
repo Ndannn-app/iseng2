@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? ❤️</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset dan styling dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Arial Rounded MT Bold', sans-serif;
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Hati-hartan berjatuhan */
+        .hearts-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 105, 180, 0.7);
+            font-size: 24px;
+            animation: fall linear infinite;
+            top: -50px;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        /* Container utama */
+        .container {
+            text-align: center;
+            padding: 40px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 15px 35px rgba(255, 20, 147, 0.3);
+            transform: scale(0.8);
+            animation: fadeInScale 1.5s forwards;
+            z-index: 1;
+            position: relative;
+            max-width: 90%;
+            width: 500px;
+            border: 8px solid #ff69b4;
+            overflow: hidden;
+        }
+
+        /* Animasi container muncul */
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Judul */
+        h1 {
+            color: #ff1493;
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 0px rgba(255, 182, 193, 0.5);
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        h1:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 5px;
+            background: linear-gradient(to right, transparent, #ff69b4, transparent);
+            border-radius: 5px;
+        }
+
+        /* Teks tambahan */
+        .subtitle {
+            color: #d81b60;
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        /* Container tombol */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        /* Tombol Yes */
+        .yes-btn {
+            background: linear-gradient(45deg, #ff4081, #ff79b0);
+            color: white;
+            padding: 18px 45px;
+            font-size: 1.8rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 15px rgba(255, 64, 129, 0.4);
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .yes-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 20px rgba(255, 64, 129, 0.6);
+            background: linear-gradient(45deg, #ff79b0, #ff4081);
+        }
+
+        .yes-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+
+        .yes-btn:hover:before {
+            left: 100%;
+        }
+
+        /* Tombol No */
+        .no-btn {
+            background: linear-gradient(45deg, #b0b0b0, #d0d0d0);
+            color: #777;
+            padding: 18px 45px;
+            font-size: 1.8rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .no-btn:hover {
+            background: linear-gradient(45deg, #d0d0d0, #b0b0b0);
+        }
+
+        /* Animasi tombol Yes membesar */
+        @keyframes growButton {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.3);
+            }
+            100% {
+                transform: scale(1.2);
+            }
+        }
+
+        /* Gambar lucu */
+        .funny-image {
+            display: none;
+            margin: 30px auto 0;
+            width: 280px;
+            border-radius: 20px;
+            border: 5px solid #ff69b4;
+            animation: bounceIn 1s forwards;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animasi gambar muncul */
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3) rotate(-10deg);
+            }
+            50% {
+                opacity: 0.9;
+                transform: scale(1.05) rotate(5deg);
+            }
+            70% {
+                transform: scale(0.95) rotate(-2deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        /* Pesan setelah klik Yes */
+        .message {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(45deg, #fff0f5, #ffe4e1);
+            border-radius: 20px;
+            border: 3px dashed #ff69b4;
+            animation: fadeInUp 1s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message h2 {
+            color: #ff1493;
+            margin-bottom: 15px;
+            font-size: 2.2rem;
+        }
+
+        .message p {
+            color: #d81b60;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* Ikon hati berdenyut */
+        .heart-icon {
+            color: #ff4081;
+            font-size: 2rem;
+            animation: heartbeat 1.2s infinite;
+            margin: 0 5px;
+        }
+
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.2);
+            }
+            50% {
+                transform: scale(1);
+            }
+            75% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Responsif untuk mobile */
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+                width: 95%;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .yes-btn, .no-btn {
+                width: 100%;
+                max-width: 250px;
+                padding: 15px 30px;
+                font-size: 1.5rem;
+            }
+
+            .funny-image {
+                width: 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hati-hati berjatuhan -->
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <!-- Container utama -->
+    <div class="container" id="container">
+        <h1>Will you be my Valentine? <i class="heart-icon">❤️</i></h1>
+        
+        <p class="subtitle">You make my heart go <i class="heart-icon">❤️</i> <i class="heart-icon">❤️</i> <i class="heart-icon">❤️</i></p>
+        
+        <div class="button-container">
+            <button class="button no-btn" id="noButton">No</button>
+            <button class="button yes-btn" id="yesButton">Yes!</button>
+        </div>
+        
+        <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" class="funny-image" id="funnyImage" alt="Bear with hearts" />
+        
+        <div class="message" id="message">
+            <h2>Yay! You made my day! <i class="heart-icon">💖</i></h2>
+            <p>I'm so happy you said YES! Let's celebrate this Valentine's Day together with lots of love, laughter, and sweet moments. You're the best thing that ever happened to me! <i class="heart-icon">😊</i></p>
+            <p><i class="heart-icon">🎉</i> HAPPY VALENTINE'S DAY! <i class="heart-icon">🎉</i></p>
+        </div>
+    </div>
+
+    <script>
+        // Elemen DOM
+        const yesButton = document.getElementById('yesButton');
+        const noButton = document.getElementById('noButton');
+        const funnyImage = document.getElementById('funnyImage');
+        const message = document.getElementById('message');
+        const heartsContainer = document.getElementById('heartsContainer');
+        const container = document.getElementById('container');
+
+        // Membuat hati berjatuhan
+        function createHearts() {
+            for (let i = 0; i < 30; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤️';
+                
+                // Posisi acak
+                heart.style.left = Math.random() * 100 + 'vw';
+                
+                // Animasi dengan durasi acak
+                const duration = Math.random() * 5 + 5;
+                const delay = Math.random() * 5;
+                heart.style.animation = `fall ${duration}s linear ${delay}s infinite`;
+                
+                // Ukuran acak
+                const size = Math.random() * 30 + 20;
+                heart.style.fontSize = size + 'px';
+                
+                // Warna acak (pink variations)
+                const colors = ['#ff69b4', '#ff1493', '#ff4081', '#ff79b0', '#ffb6c1'];
+                heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+                
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        // Fungsi untuk menggerakkan tombol No secara acak
+        function moveNoButton() {
+            const containerRect = container.getBoundingClientRect();
+            const buttonRect = noButton.getBoundingClientRect();
+            
+            // Posisi acak dalam container
+            const maxX = containerRect.width - buttonRect.width - 20;
+            const maxY = containerRect.height - buttonRect.height - 20;
+            
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            
+            noButton.style.position = 'absolute';
+            noButton.style.left = randomX + 'px';
+            noButton.style.top = randomY + 'px';
+        }
+
+        // Saat tombol No disentuh atau diklik
+        noButton.addEventListener('mouseover', moveNoButton);
+        noButton.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            moveNoButton();
+        });
+        noButton.addEventListener('click', moveNoButton);
+
+        // Saat tombol No diklik, tombol Yes membesar
+        noButton.addEventListener('click', function() {
+            yesButton.style.animation = 'growButton 0.8s forwards';
+            
+            // Tambahkan efek visual tambahan
+            container.style.boxShadow = '0 15px 35px rgba(255, 20, 147, 0.5)';
+            
+            // Tambahkan lebih banyak hati
+            for (let i = 0; i < 10; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animation = `fall ${Math.random() * 3 + 3}s linear ${Math.random() * 2}s infinite`;
+                heart.style.fontSize = (Math.random() * 25 + 15) + 'px';
+                heartsContainer.appendChild(heart);
+            }
+        });
+
+        // Saat tombol Yes diklik
+        yesButton.addEventListener('click', function() {
+            // Tampilkan gambar dan pesan
+            funnyImage.style.display = 'block';
+            message.style.display = 'block';
+            
+            // Sembunyikan tombol
+            yesButton.style.display = 'none';
+            noButton.style.display = 'none';
+            
+            // Ubah warna latar container
+            container.style.background = 'linear-gradient(135deg, #ffe4e1, #fff0f5)';
+            
+            // Tambahkan lebih banyak hati dengan warna cerah
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = ['❤️', '💖', '💗', '💓', '💞'][Math.floor(Math.random() * 5)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animation = `fall ${Math.random() * 4 + 2}s linear ${Math.random() * 1}s infinite`;
+                heart.style.fontSize = (Math.random() * 40 + 20) + 'px';
+                heartsContainer.appendChild(heart);
+            }
+            
+            // Efek konfetti visual
+            setTimeout(() => {
+                container.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    container.style.transform = 'scale(1)';
+                }, 300);
+            }, 500);
+        });
+
+        // Inisialisasi
+        window.onload = function() {
+            createHearts();
+            
+            // Animasi kecil pada tombol Yes saat halaman dimuat
+            setTimeout(() => {
+                yesButton.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    yesButton.style.transform = 'scale(1)';
+                }, 300);
+            }, 1000);
+        };
+    </script>
+</body>
+</html>
